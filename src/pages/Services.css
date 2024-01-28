@@ -1,0 +1,28 @@
+.services{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 0 auto;
+}
+.services__item{
+    width: 32%;
+    
+}
+.services__item:hover .services__card{
+    border: 1px solid #38385C;
+}
+.services__card{
+    transition: all .4s;
+    border: 1px solid white;
+}
+
+@media (max-width: 1024px){
+    .services__item{
+        width: 48%;
+    }
+}
+@media (max-width: 768px){
+    .services__item{
+        width: 100%;
+    }
+}
