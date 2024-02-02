@@ -7,13 +7,23 @@
 article{
   color: #38385C;
 }
+a{
+  color: #38385C;
+}
 a:active{
   color: #38385C;
 }
+
 
 ul {
   margin: 0;
   padding: 0;
   margin-block-start: 0;
   margin-block-end: 0;
+}
+p{
+  line-height: 2;
+}
+.margin20px{
+  margin: 20px 0;
 }

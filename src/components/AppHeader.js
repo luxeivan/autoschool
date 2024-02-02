@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Image, Layout, Menu, theme, Button, Typography, Drawer, Modal, Input, Form, Checkbox } from 'antd';
 import IconMenu from './menu/IconMenu';
 import logo from '../img/logo.svg'
@@ -6,6 +6,8 @@ import vk from '../img/vk.svg'
 
 import css from './AppHeader.css'
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import conf from '../config';
 const { Text } = Typography;
 
 const { Header, Content, Footer } = Layout;
@@ -28,6 +30,17 @@ const items = [
     },
 ]
 export default function AppHeader() {
+    const [data, setData] = useState({})
+    useEffect(() => {
+        axios.get(`${conf.serverUrl}/api/header`)
+            .then(res => {
+                console.log(res.data.data.attributes)
+                setData(res.data.data.attributes)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }, [])
     // ------------------------------------------
     const [open, setOpen] = useState(false);
     const showDrawer = () => {
@@ -63,15 +76,15 @@ export default function AppHeader() {
                 </Link>
                 <div className='topheader__contactarea'>
                     <Text level={4}>
-                        <a href='tel:+74997100070' className='phoneblock'>
+                        <a href={`tel:+${data.phone1}`} className='phoneblock'>
                             <span class="material-symbols-outlined phoneblock__icon">phone</span>
-                            <span className='phoneblock__text'>+7 (499) 710-00-70</span>
+                            <span className='phoneblock__text'>{data.displayPhone1}</span>
                         </a>
                     </Text>
                     <Text level={4}>
-                        <a href='tel:+79651217007' className='phoneblock'>
+                        <a href={`tel:+${data.phone2}`} className='phoneblock'>
                             <span class="material-symbols-outlined phoneblock__icon">phone</span>
-                            <span className='phoneblock__text'>+7 (965) 121-70-07</span>
+                            <span className='phoneblock__text'>{data.displayPhone2}</span>
                         </a>
                     </Text>
                 </div>
@@ -91,30 +104,30 @@ export default function AppHeader() {
             </Header>
             <Drawer title="Наши контакты" onClose={onClose} open={open}>
                 <Text level={4}>
-                    <a href='tel:+74997100070' className='phoneblockmobile'>
+                    <a href={`tel:+${data.phone1}`} className='phoneblockmobile'>
                         <span class="material-symbols-outlined phoneblockmobile__icon">phone</span>
-                        <span className='phoneblockmobile__text'>+7 (499) 710-00-70</span>
+                        <span className='phoneblockmobile__text'>{data.displayPhone2}</span>
                     </a>
                 </Text>
                 <Text level={4}>
-                    <a href='tel:+79651217007' className='phoneblockmobile'>
+                    <a href={`tel:+${data.phone2}`} className='phoneblockmobile'>
                         <span class="material-symbols-outlined phoneblockmobile__icon">phone</span>
-                        <span className='phoneblockmobile__text'>+7 (965) 121-70-07</span>
+                        <span className='phoneblockmobile__text'>{data.displayPhone2}</span>
                     </a>
                 </Text>
                 <Text level={4}>
-                    <a href='mailto:malinavto@yandex.ru' className='phoneblockmobile'>
+                    <a href={`mailto:${data.email}`} className='phoneblockmobile'>
                         <span class="material-symbols-outlined phoneblockmobile__icon">email</span>
-                        <span className='phoneblockmobile__text'>malinavto@yandex.ru</span>
+                        <span className='phoneblockmobile__text'>{data.email}</span>
                     </a>
                 </Text>
                 <Text level={4}>
-                    <a href='https://vk.com/malinavto' className='phoneblockmobile' target='_blank'>
+                    <a href={`https://vk.com/${data.vk}`} className='phoneblockmobile' target='_blank'>
                         <svg className='phoneblockmobile__icon' width="24px" height="24px" viewBox="0 0 24 24" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"><defs>
 
                         </defs><path className="cls-1" d="M1.5,7.25c0,2.86,2.86,10.5,10.5,10.5h1.91V14.89h1a6.34,6.34,0,0,1,2.85,2.85H22.5V16.8c-1-1.5-2.55-2.55-3.82-3.82h0a9.79,9.79,0,0,0,2.57-4.53l.3-1.2H17.73l-.1.3A11.3,11.3,0,0,1,14.86,12h-.95V7.25H9.14V8.2l.95,1V13A6,6,0,0,1,6.27,7.25Z" />
                         </svg>
-                        <span className='phoneblockmobile__text'>malinavto</span>
+                        <span className='phoneblockmobile__text'>{data.vk}</span>
                     </a>
                 </Text>
                 <Text level={4}>
@@ -126,7 +139,7 @@ export default function AppHeader() {
                 title="Записаться в автошколу"
                 onOk={handleOk}
                 onCancel={handleCancel}
-                styles={{header: {marginBottom:"20px",textAlign:"center"}}}
+                styles={{ header: { marginBottom: "20px", textAlign: "center" } }}
                 footer={[
                 ]}
             >
@@ -181,7 +194,7 @@ export default function AppHeader() {
                                 span: 16,
                             }}
                         >
-                            <div style={{display:"flex", gap:"10px"}}>
+                            <div style={{ display: "flex", gap: "10px" }}>
 
                                 <Button type="primary" htmlType="submit">
                                     Записаться

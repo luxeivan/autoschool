@@ -12,7 +12,14 @@ import CategoryBAT from './pages/Services/CategoryBAT';
 import CategoryB from './pages/Services/CategoryB';
 import Education from './pages/Services/Education';
 import ScrollToTop from './components/ScrollToTop';
+import appcss from './App.css'
+import Page404 from './pages/Page404';
+import Docs from './pages/About/Docs';
+import Staff from './pages/About/Staff';
+import AboutEducation from './pages/About/AboutEducation';
+import Info from './pages/About/Info';
 const { Content } = Layout;
+
 
 
 const App = () => {
@@ -26,6 +33,10 @@ const App = () => {
           Layout: {
             /* here is your component tokens */
             headerBg: "#38385C",
+          },
+          Descriptions: {
+            /* here is your component tokens */
+            titleMarginBottom: 5
           },
         },
         token: {
@@ -50,7 +61,7 @@ const App = () => {
                   minHeight: 280,
                   maxWidth: 1240,
                   margin: "0 auto",
-                  padding: 24,
+                  padding: "0 24px",
                   borderRadius: borderRadiusLG,
                 }}
               >
@@ -64,9 +75,16 @@ const App = () => {
                   <Route path='/services/education' element={<Education />} />
                   {/* ----------------------- */}
                   <Route path='/advanced' element={<Advanced />} />
+                  {/* ----------------------- */}
                   <Route path='/about' element={<About />} />
+                  <Route path='/about/docs' element={<Docs />} />
+                  <Route path='/about/staff' element={<Staff />} />
+                  <Route path='/about/info' element={<Info />} />
+                  <Route path='/about/education' element={<AboutEducation />} />
+                  {/* ----------------------- */}
 
                   <Route path='/contacts' element={<Contacts />} />
+                  <Route path='*' element={<Page404 />} />
                 </Routes>
               </div>
             </Content>
