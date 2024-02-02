@@ -9,7 +9,7 @@ export default function AppFooter() {
       textAlign: 'center',
     }}
   >
-    Автошкола МалинАвто ©{new Date().getFullYear()}
+    Автошкола «МалинАвто» ©{new Date().getFullYear()}
   </Footer>
   )
 }
