@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import conf from '../config'
 import { Helmet } from 'react-helmet'
 import PageTitle from '../components/another/PageTitle'
-import { Avatar, List, Descriptions, Collapse, Divider, Flex, Typography } from 'antd';
+import {  List, Descriptions } from 'antd';
 import YandexMap from '../components/another/YandexMap'
 
 export default function Contacts() {
@@ -68,7 +68,7 @@ export default function Contacts() {
           },
         ]}
       />
-      <YandexMap lat={data&&data.latitude || 55} lon={data&&data.longitude || 37} />
+      <YandexMap lat={(data&&data.latitude) || 55} lon={(data&&data.longitude) || 37} />
     </div>
   )
 }

@@ -6,7 +6,7 @@ export default function Main() {
     <div>
       <Helmet>
         <meta name="description" content="Автошкола «МалинАвто»" />
-        <title>МалинАвто: Автошкола</title>
+        <title>Автошкола МалинАвто</title>
       </Helmet>
       Main
       </div>

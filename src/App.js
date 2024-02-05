@@ -18,6 +18,10 @@ import Docs from './pages/About/Docs';
 import Staff from './pages/About/Staff';
 import AboutEducation from './pages/About/AboutEducation';
 import Info from './pages/About/Info';
+import CategoryA from './pages/Services/CategoryA';
+import Medical from './pages/Services/Medical';
+import Quadro from './pages/Services/Quadro';
+import Board from './pages/Services/Board';
 const { Content } = Layout;
 
 
@@ -72,6 +76,10 @@ const App = () => {
                   {/* ----------------------- */}
                   <Route path='/services/category-b' element={<CategoryB />} />
                   <Route path='/services/category-b-at' element={<CategoryBAT />} />
+                  <Route path='/services/category-a' element={<CategoryA />} />
+                  <Route path='/services/medical' element={<Medical />} />
+                  <Route path='/services/quadro' element={<Quadro />} />
+                  <Route path='/services/board' element={<Board />} />
                   <Route path='/services/education' element={<Education />} />
                   {/* ----------------------- */}
                   <Route path='/advanced' element={<Advanced />} />

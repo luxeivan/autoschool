@@ -1,7 +1,7 @@
 import React from 'react'
 import { Helmet } from "react-helmet";
-import { Collapse,Card } from 'antd';
-import { Routes, Route, Link } from "react-router-dom";
+import { Card } from 'antd';
+import { Link } from "react-router-dom";
 import info from "../img/info.jpg";
 import docs from "../img/docs.jpg";
 import aboutEducation from "../img/about-education.jpg";
@@ -42,11 +42,11 @@ export default function About() {
   return (
     <div className="services">
       <Helmet>
-        <meta name="description" content="Услуги автошколы «МалинАвто»" />
-        <title>МалинАвто: Услуги</title>
+        <meta name="description" content="О нашей автошколе «МалинАвто»" />
+        <title>О нас</title>
       </Helmet>
-      {cards.map((item) => (
-        <Link className="services__item" to={item.url}>
+      {cards.map((item,index) => (
+        <Link key={index} className="services__item" to={item.url}>
           <Card
             className="services__card"
             title={item.name}

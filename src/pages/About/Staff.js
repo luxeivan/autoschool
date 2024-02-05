@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Avatar, List, Descriptions, Collapse, Divider, Flex, Typography } from 'antd';
+import { Avatar,  Descriptions,  Divider, Flex} from 'antd';
 import { Helmet } from "react-helmet";
 import conf from '../../config'
 import axios from 'axios';
@@ -29,7 +29,7 @@ export default function Staff() {
                 <meta name="description" content={meta.description} />
                 <title>{meta.title}</title>
             </Helmet>
-            <PageTitle title={meta.title}/>
+            <PageTitle title={meta.title} />
             <Divider orientation="left"><strong>Руководство</strong></Divider>
             {admin.map(item => <Descriptions
                 key={item.id}
@@ -59,7 +59,8 @@ export default function Staff() {
                 ]} />)}
 
             <Divider orientation="left"><strong>Педагогический состав</strong></Divider>
-            {teacher.map(item => <Descriptions
+            {teacher.map((item, index) => <Descriptions
+                key={index}
                 style={{ marginBottom: "20px" }}
                 title={<Flex gap={'small'}><Avatar src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${item.id}`} /><p>{item.fio}</p></Flex>}
                 bordered

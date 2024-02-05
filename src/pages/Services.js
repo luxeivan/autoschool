@@ -29,28 +29,28 @@ const cards = [
   {
     id: 3,
     name: "Обучение на категорию «А»",
-    url: "/services/category-b",
+    url: "/services/category-a",
     description: "Обучение на категорию «А»",
     image: categoryA,
   },
   {
     id: 4,
     name: "Медицинская комиссия",
-    url: "/services/category-b",
+    url: "/services/medical",
     description: "Медицинская комиссия",
     image: medcom,
   },
   {
     id: 5,
     name: "Квадроциклы и спецтехника",
-    url: "/services/category-b",
+    url: "/services/quadro",
     description: "Квадроциклы и спецтехника",
     image: qvadro,
   },
   {
     id: 6,
     name: "Судовождение",
-    url: "/services/category-b",
+    url: "/services/board",
     description: "Судовождение",
     image: board,
   },
@@ -68,7 +68,7 @@ export default function Services() {
     <div className="services">
       <Helmet>
         <meta name="description" content="Услуги автошколы «МалинАвто»" />
-        <title>МалинАвто: Услуги</title>
+        <title>Наши услуги</title>
       </Helmet>
       {cards.map((item) => (
         <Link className="services__item" to={item.url} key={item.id}>
