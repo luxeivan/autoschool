@@ -34,7 +34,7 @@ export default function AppHeader() {
     useEffect(() => {
         axios.get(`${conf.serverUrl}/api/header`)
             .then(res => {
-                console.log(res.data.data.attributes)
+                //console.log(res.data.data.attributes)
                 setData(res.data.data.attributes)
             })
             .catch(error => {
@@ -77,13 +77,13 @@ export default function AppHeader() {
                 <div className='topheader__contactarea'>
                     <Text level={4}>
                         <a href={`tel:+${data.phone1}`} className='phoneblock'>
-                            <span class="material-symbols-outlined phoneblock__icon">phone</span>
+                            <span className="material-symbols-outlined phoneblock__icon">phone</span>
                             <span className='phoneblock__text'>{data.displayPhone1}</span>
                         </a>
                     </Text>
                     <Text level={4}>
                         <a href={`tel:+${data.phone2}`} className='phoneblock'>
-                            <span class="material-symbols-outlined phoneblock__icon">phone</span>
+                            <span className="material-symbols-outlined phoneblock__icon">phone</span>
                             <span className='phoneblock__text'>{data.displayPhone2}</span>
                         </a>
                     </Text>
@@ -92,32 +92,32 @@ export default function AppHeader() {
                     <Button type="primary" onClick={showModal}>Записаться</Button>
                 </div>
                 <a type="primary" onClick={showDrawer} className='topheader__buttoncontact'>
-                    <span class="material-symbols-outlined">
+                    <span className="material-symbols-outlined">
                         phone
                     </span>
                 </a>
             </div>
             <Header className='bottomheader'>
                 <ul className='bottomheader__menu'>
-                    {items.map(item => item.label)}
+                    {items.map((item,index) => <span key={index}>{item.label}</span>)}
                 </ul>
             </Header>
             <Drawer title="Наши контакты" onClose={onClose} open={open}>
                 <Text level={4}>
                     <a href={`tel:+${data.phone1}`} className='phoneblockmobile'>
-                        <span class="material-symbols-outlined phoneblockmobile__icon">phone</span>
+                        <span className="material-symbols-outlined phoneblockmobile__icon">phone</span>
                         <span className='phoneblockmobile__text'>{data.displayPhone2}</span>
                     </a>
                 </Text>
                 <Text level={4}>
                     <a href={`tel:+${data.phone2}`} className='phoneblockmobile'>
-                        <span class="material-symbols-outlined phoneblockmobile__icon">phone</span>
+                        <span className="material-symbols-outlined phoneblockmobile__icon">phone</span>
                         <span className='phoneblockmobile__text'>{data.displayPhone2}</span>
                     </a>
                 </Text>
                 <Text level={4}>
                     <a href={`mailto:${data.email}`} className='phoneblockmobile'>
-                        <span class="material-symbols-outlined phoneblockmobile__icon">email</span>
+                        <span className="material-symbols-outlined phoneblockmobile__icon">email</span>
                         <span className='phoneblockmobile__text'>{data.email}</span>
                     </a>
                 </Text>

@@ -14,7 +14,7 @@ export default function Education() {
 
         axios.get(`${conf.serverUrl}/api/obuchenie-i-attestacziya-masterov?populate=meta`)
             .then(res => {
-                console.log(res.data.data)
+                //console.log(res.data.data)
                 setContent(res.data.data.attributes.content)
                 setMeta(res.data.data.attributes.meta)
             })
@@ -34,31 +34,21 @@ export default function Education() {
                 <BlocksRenderer
                     content={content}
                     blocks={{
-                        // You can use the default components to set class names...
-                        paragraph: ({ children }) => <p className="text-neutral900 max-w-prose">{children}</p>,
-                        // ...or point to a design system
-                        heading: ({ children, level }) => {
-                            switch (level) {
-                                case 1:
-                                    return <Typography.Title level={1}>{children}</Typography.Title>
-                                case 2:
-                                    return <Typography.Title level={2}>{children}</Typography.Title>
-                                case 3:
-                                    return <Typography.Title level={3}>{children}</Typography.Title>
-                                case 4:
-                                    return <Typography.Title level={4}>{children}</Typography.Title>
-                                case 5:
-                                    return <Typography.Title level={5}>{children}</Typography.Title>
-                                case 6:
-                                    return <Typography.Title level={6}>{children}</Typography.Title>
-                                default:
-                                    return <Typography.Title level={7}>{children}</Typography.Title>
-                            }
+
+                        list: (tratata) => {
+                            const newArr = tratata.children.map(item=>item.props.content.children[0].text)
+                            //console.log(tratata.children.map(item=>item.props.content.children[0].text))
+                            return <List>{newArr.map((item,index)=><List.Item key={index}>{item}</List.Item>)}</List>
                         },
+                        // You can use the default components to set class names...
+                        paragraph: ({ children }) => <p>{children}</p>,
+                        // ...or point to a design system
+                        heading: ({ children, level }) => <Typography.Title className='info-title' level={level}>{children}</Typography.Title>,
                         // For links, you may want to use the component from your router or framework
                         link: ({ children, url }) => <Link to={url}>{children}</Link>,
                     }}
                     modifiers={{
+
                         bold: ({ children }) => <strong>{children}</strong>,
                         italic: ({ children }) => <span className="italic">{children}</span>,
                     }}

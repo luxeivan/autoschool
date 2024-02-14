@@ -16,7 +16,7 @@ export default function Contacts() {
   useEffect(() => {
     axios.get(`${conf.serverUrl}/api/kontakty?populate[0]=meta&populate[1]=phonegroup`)
       .then(res => {
-        console.log(res.data.data.attributes)
+        //console.log(res.data.data.attributes)
         setdata(res.data.data.attributes)
         setMeta(res.data.data.attributes.meta)
       })
