@@ -1,20 +1,69 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import PageTitle from '../../components/another/PageTitle'
 import { List, Typography } from 'antd'
+import axios from 'axios'
+import conf from '../../config'
+import { BlocksRenderer } from '@strapi/blocks-react-renderer'
+import { Link } from 'react-router-dom'
 
 export default function Education() {
+    const [content, setContent] = useState([])
+    const [meta, setMeta] = useState({ title: '', description: '' })
+    useEffect(() => {
+
+        axios.get(`${conf.serverUrl}/api/obuchenie-i-attestacziya-masterov?populate=meta`)
+            .then(res => {
+                console.log(res.data.data)
+                setContent(res.data.data.attributes.content)
+                setMeta(res.data.data.attributes.meta)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }, [])
     return (
         <>
 
             <Helmet>
-                <meta name="description" content="Обучение и аттестация мастеров производственного обучения вождению" />
-                <title>Обучение и аттестация мастеров</title>
+                <meta name="description" content={meta.title} />
+                <title>{meta.description}</title>
             </Helmet>
             <div>
-
-                <PageTitle title={'Обучение и аттестация мастеров'} />
-                <div class="description uni_col uni-text-default uni-100 only">
+                <PageTitle title={meta.title} />
+                <BlocksRenderer
+                    content={content}
+                    blocks={{
+                        // You can use the default components to set class names...
+                        paragraph: ({ children }) => <p className="text-neutral900 max-w-prose">{children}</p>,
+                        // ...or point to a design system
+                        heading: ({ children, level }) => {
+                            switch (level) {
+                                case 1:
+                                    return <Typography.Title level={1}>{children}</Typography.Title>
+                                case 2:
+                                    return <Typography.Title level={2}>{children}</Typography.Title>
+                                case 3:
+                                    return <Typography.Title level={3}>{children}</Typography.Title>
+                                case 4:
+                                    return <Typography.Title level={4}>{children}</Typography.Title>
+                                case 5:
+                                    return <Typography.Title level={5}>{children}</Typography.Title>
+                                case 6:
+                                    return <Typography.Title level={6}>{children}</Typography.Title>
+                                default:
+                                    return <Typography.Title level={7}>{children}</Typography.Title>
+                            }
+                        },
+                        // For links, you may want to use the component from your router or framework
+                        link: ({ children, url }) => <Link to={url}>{children}</Link>,
+                    }}
+                    modifiers={{
+                        bold: ({ children }) => <strong>{children}</strong>,
+                        italic: ({ children }) => <span className="italic">{children}</span>,
+                    }}
+                />
+                {/* <div class="description uni_col uni-text-default uni-100 only">
                     <p>Для обеспечения автомобильных школ квалифицированными кадрами, как и для реализации самостоятельной деятельности профессионалов, предлагаем услуги по проведению аттестации, повышению квалификации мастеров производственного обучения, преподавателей, председателей экзаменационных комиссий.</p>
 
 
@@ -60,9 +109,9 @@ export default function Education() {
                             Иные необходимые документы необходимые для записи на курсы.</List.Item>
                     </List>
 
-                    <Typography.Title level={3} className='info-title'>Запись по телефону: <a href='tel:+79654045257' style={{display:"inline-block"}}>+7 (965) 404-52-57</a></Typography.Title>
+                    <Typography.Title level={3} className='info-title'>Запись по телефону: <a href='tel:+79654045257' style={{ display: "inline-block" }}>+7 (965) 404-52-57</a></Typography.Title>
 
-                </div>
+                </div> */}
             </div>
         </>
     )
