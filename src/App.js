@@ -22,6 +22,10 @@ import CategoryA from './pages/Services/CategoryA';
 import Medical from './pages/Services/Medical';
 import Quadro from './pages/Services/Quadro';
 import Board from './pages/Services/Board';
+import Gibdd from './pages/Advanced/Gibdd';
+import OurInstructors from './pages/Advanced/OurInstructors';
+import AdditionalClasses from './pages/Advanced/AdditionalClasses';
+import Gosuslugi from './pages/Advanced/Gosuslugi';
 const { Content } = Layout;
 
 
@@ -83,6 +87,11 @@ const App = () => {
                   <Route path='/services/education' element={<Education />} />
                   {/* ----------------------- */}
                   <Route path='/advanced' element={<Advanced />} />
+                  {/* ----------------------- */}
+                  <Route path='/advanced/gibdd' element={<Gibdd />} />
+                  <Route path='/advanced/our-instructors' element={<OurInstructors />} />
+                  <Route path='/advanced/additional-classes' element={<AdditionalClasses />} />
+                  <Route path='/advanced/gosuslugi' element={<Gosuslugi />} />
                   {/* ----------------------- */}
                   <Route path='/about' element={<About />} />
                   <Route path='/about/docs' element={<Docs />} />

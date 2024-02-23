@@ -1,23 +1,36 @@
-import { Typography } from 'antd'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import PageTitle from '../../components/another/PageTitle'
+import axios from 'axios'
+import conf from '../../config'
+import CustomBlockRender from '../../components/CustomBlockRender'
+
 
 export default function CategoryB() {
+  const [error, setError] = useState(false)
+  const [content, setContent] = useState([])
+  const [meta, setMeta] = useState({ title: '', description: '' })
+  useEffect(() => {
+    axios.get(`${conf.serverUrl}/api/obuchenie-na-kategoriyu-v?populate=meta`)
+      .then(res => {
+        //console.log(res.data.data)
+        setContent(res.data.data.attributes.content)
+        setMeta(res.data.data.attributes.meta)
+      })
+      .catch(error => {
+        setError(true)
+        console.log(error)
+      })
+  }, [])
   return (
     <div>
       <Helmet>
-        <meta name="description" content={'Обучение на категорию «В»'} />
-        <title>{'Обучение на категорию «В»'}</title>
+        <meta name="description" content={meta.description} />
+        <title>{meta.title}</title>
       </Helmet>
-      <PageTitle title={'Обучение на категорию «В»'} />
-      
-      <p>
-        Стоимость курса теоретических занятий на весь период обучения по категории «В» — <span style={{color:"green",fontWeight:600}}>от 11 000 рублей</span>. «МалинАвто» предоставляет возможность поэтапной оплаты по схеме <span style={{color:"green",fontWeight:600}}>50%+ 50%</span>. Курс обучения по категории «В» рассчитан на 2,5 месяца. Учитывая занятость наших курсантов, занятия по теоретической части мы проводим по будням, <span style={{color:"green",fontWeight:600}}>вечером (с 18:30 до 20:30)</span>, а также имеются группы <span style={{color:"green",fontWeight:600}}>выходного дня
-        (с 10:00 до 12:00 и с 12:30 до 14:30)</span> . Время для практических занятий согласовывается отдельно в индивидуальном порядке.
+      <PageTitle title={meta.title} />
 
-        Стоимость практических занятий <span style={{color:"green",fontWeight:600}}>1100 рублей</span> (длительность 1,5 часа). Практические занятия проходят в удобное для Вас время.
-      </p>
+      <CustomBlockRender content={content} />
     </div>
   )
 }

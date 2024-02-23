@@ -1,17 +1,16 @@
-import React,{useEffect,useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import PageTitle from '../../components/another/PageTitle'
 import axios from 'axios'
 import conf from '../../config'
 import CustomBlockRender from '../../components/CustomBlockRender'
 
-
-export default function CategoryBAT() {
+export default function AdditionalClasses() {
   const [error, setError] = useState(false)
   const [content, setContent] = useState([])
   const [meta, setMeta] = useState({ title: '', description: '' })
   useEffect(() => {
-    axios.get(`${conf.serverUrl}/api/obuchenie-na-kategoriyu-v-at?populate=meta`)
+    axios.get(`${conf.serverUrl}/api/dopolnitelnye-zanyatiya?populate=meta`)
       .then(res => {
         //console.log(res.data.data)
         setContent(res.data.data.attributes.content)
@@ -24,6 +23,9 @@ export default function CategoryBAT() {
   }, [])
   return (
     <div>
+      {error &&
+        <h2 style={{marginTop:"100px",textAlign:"center"}}>Что-то пошло не так! Попробуйте обновить страницу...</h2>
+      }
       <Helmet>
         <meta name="description" content={meta.description} />
         <title>{meta.title}</title>

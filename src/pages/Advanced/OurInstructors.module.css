@@ -1,0 +1,19 @@
+.containerImage {
+    width: 600px;
+}
+
+@media (max-width:1200px) {
+    .containerImage {
+        width: 400px;
+    }
+}
+@media (max-width:960px) {
+    .containerImage {
+        width: 300px;
+    }
+}
+@media (max-width:500px) {
+    .containerImage {
+        width: 100%;
+    }
+}

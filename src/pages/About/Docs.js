@@ -40,18 +40,7 @@ export default function Docs() {
                     }
                 )
                 )} />
-                {/* {docs.map((group, index) =>
-                    // <Space key={index} direction="vertical" size="middle" style={{ display: 'flex' }}>
-                    //     <Typography.Title level={5}>{group.name}</Typography.Title>
-                    <List
-                        itemLayout="horizontal"
-                        dataSource={group.file.data}
-                        renderItem={(file, index) => (
-                            <File key={index} name={file.attributes.name} url={file.attributes.url} type={file.attributes.ext} size={file.attributes.size} />
-                        )}
-                    />
-                    // </Space>
-                )} */}
+               
             </div >
         </>
     )

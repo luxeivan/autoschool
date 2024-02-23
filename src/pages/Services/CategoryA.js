@@ -1,19 +1,36 @@
-import React from 'react'
+import React,{useEffect,useState} from 'react'
 import { Helmet } from 'react-helmet'
 import PageTitle from '../../components/another/PageTitle'
+import axios from 'axios'
+import conf from '../../config'
+import CustomBlockRender from '../../components/CustomBlockRender'
+
 
 export default function CategoryA() {
+  const [error, setError] = useState(false)
+  const [content, setContent] = useState([])
+  const [meta, setMeta] = useState({ title: '', description: '' })
+  useEffect(() => {
+    axios.get(`${conf.serverUrl}/api/obuchenie-na-kategoriyu-a?populate=meta`)
+      .then(res => {
+        //console.log(res.data.data)
+        setContent(res.data.data.attributes.content)
+        setMeta(res.data.data.attributes.meta)
+      })
+      .catch(error => {
+        setError(true)
+        console.log(error)
+      })
+  }, [])
   return (
     <div>
       <Helmet>
-        <meta name="description" content={'Обучение на категорию «А»'} />
-        <title>{'Обучение на категорию «А»'}</title>
+        <meta name="description" content={meta.description} />
+        <title>{meta.title}</title>
       </Helmet>
-      <PageTitle title={'Обучение на категорию «А»'} />
-      <p>
-      Стоимость курса теоретических занятий на весь период обучения по категории «А» — от 9 000 рублей. Одновременное обучение по категориям «А» и «В» - 16 000 рублей. «МалинАвто» предоставляет возможность поэтапной оплаты по схеме 50%+ 50%. Также можно записаться в группу выходного дня или учиться по будням. Курс обучения категориям «А» рассчитан на 2,5 месяца. Учитывая занятость наших курсантов, занятия по теоретической части мы проводим по будням, вечером (с 18:30 до 20:30), а также имеются группы выходного дня (с 10:00 до 12:00 и с 12:30 до 14:30) . 
-Время для практических занятий согласовывается отдельно в индивидуальном порядке. Практические занятия проходят в удобное для Вас время. 
-      </p>
+      <PageTitle title={meta.title} />
+      
+      <CustomBlockRender content={content}/>
     </div>
   )
 }

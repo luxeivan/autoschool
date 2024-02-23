@@ -1,19 +1,36 @@
-import React from 'react'
+import React,{useEffect,useState} from 'react'
 import { Helmet } from 'react-helmet'
 import PageTitle from '../../components/another/PageTitle'
+import axios from 'axios'
+import conf from '../../config'
+import CustomBlockRender from '../../components/CustomBlockRender'
 
-export default function Medical() {
+
+export default function CategoryA() {
+  const [error, setError] = useState(false)
+  const [content, setContent] = useState([])
+  const [meta, setMeta] = useState({ title: '', description: '' })
+  useEffect(() => {
+    axios.get(`${conf.serverUrl}/api/mediczinskaya-komissiya?populate=meta`)
+      .then(res => {
+        //console.log(res.data.data)
+        setContent(res.data.data.attributes.content)
+        setMeta(res.data.data.attributes.meta)
+      })
+      .catch(error => {
+        setError(true)
+        console.log(error)
+      })
+  }, [])
   return (
     <div>
       <Helmet>
-        <meta name="description" content={'Медицинская комиссия'} />
-        <title>{'Медицинская комиссия'}</title>
+        <meta name="description" content={meta.description} />
+        <title>{meta.title}</title>
       </Helmet>
-      <PageTitle title={'Медицинская комиссия'} />
-      <p>
-        Медкомиссия проводится организованно в помещении автошколы.
-        Оплата со скидкой предоставляется медицинским учреждением.
-      </p>
+      <PageTitle title={meta.title} />
+      
+      <CustomBlockRender content={content}/>
     </div>
   )
 }
