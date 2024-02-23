@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Avatar,  Descriptions,  Divider, Flex} from 'antd';
+import { Avatar, Collapse, Descriptions, Divider, Flex, Typography } from 'antd';
 import { Helmet } from "react-helmet";
 import conf from '../../config'
 import axios from 'axios';
@@ -31,7 +31,43 @@ export default function Staff() {
             </Helmet>
             <PageTitle title={meta.title} />
             <Divider orientation="left"><strong>Руководство</strong></Divider>
-            {admin.map(item => <Descriptions
+
+            <Collapse accordion items={
+                admin.map(item => ({
+                    key: item.id,
+                    label: <div>
+                        <Typography.Title level={5} style={{ marginBottom: 0 }}>{item.post}: </Typography.Title>
+                        <Typography.Title level={5} style={{ marginTop: 0, color: "#555", fontWeight: 400 }}>{item.fio}</Typography.Title>
+                    </div>,
+                    children: <Descriptions
+                        key={item.id}
+                        style={{ marginBottom: "20px" }}
+                        // title={<Flex gap={'small'}><Avatar src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${item.id}`} /><p>{item.fio}</p></Flex>}
+                        bordered
+                        size='small'
+                        layout={mobile ? "vertical" : "horizontal"}
+                        column={{ xs: 1, sm: 1, md: 1, lg: 1, xl: 1, xxl: 1 }}
+                        contentStyle={{ marginBottom: "5px" }}
+                        items={[
+                            {
+                                key: '1',
+                                label: 'Должность',
+                                children: item.post,
+                            },
+                            {
+                                key: '2',
+                                label: 'Телефон',
+                                children: item.phone,
+                            },
+                            {
+                                key: '3',
+                                label: 'email',
+                                children: item.email,
+                            },
+                        ]} />,
+                }))
+            } />
+            {/* {admin.map(item => <Descriptions
                 key={item.id}
                 style={{ marginBottom: "20px" }}
                 title={<Flex gap={'small'}><Avatar src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${item.id}`} /><p>{item.fio}</p></Flex>}
@@ -56,10 +92,61 @@ export default function Staff() {
                         label: 'email',
                         children: item.email,
                     },
-                ]} />)}
+                ]} />)} */}
 
             <Divider orientation="left"><strong>Педагогический состав</strong></Divider>
-            {teacher.map((item, index) => <Descriptions
+            <Collapse accordion items={
+                teacher.map(item => ({
+                    key: item.id,
+                    label: <div>
+                        <Typography.Title level={5} style={{ marginBottom: 0 }}>{item.post}: </Typography.Title>
+                        <Typography.Title level={5} style={{ marginTop: 0, color: "#555", fontWeight: 400 }}>{item.fio}</Typography.Title>
+                    </div>,
+                    children: <Descriptions
+                        key={item.id}
+                        style={{ marginBottom: "20px" }}
+                        // title={<Flex gap={'small'}><Avatar src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${item.id}`} /><p>{item.fio}</p></Flex>}
+                        bordered
+                        size='small'
+                        layout={mobile ? "vertical" : "horizontal"}
+                        column={{ xs: 1, sm: 1, md: 1, lg: 1, xl: 1, xxl: 1 }}
+                        contentStyle={{ marginBottom: "5px" }}
+                        items={[
+                            {
+                                key: '1',
+                                label: 'Должность',
+                                children: item.post ? item.post : '-',
+                            },
+                            {
+                                key: '2',
+                                label: 'Учебный предмет',
+                                children: item.subject ? item.subject : '-',
+                            },
+                            {
+                                key: '3',
+                                label: 'Образование',
+                                children: item.education ? item.education : '-',
+                            },
+                            {
+                                key: '4',
+                                label: 'Удостоверение о повышении квалификации (не реже чем один раз в три года)',
+                                children: item.certificate ? item.certificate : '-',
+                            },
+                            {
+                                key: '5',
+                                label: 'Стаж работы по специальности',
+                                children: item.experience ? item.experience : '-',
+                            },
+                            {
+                                key: '6',
+                                label: 'Форма трудового соглашения',
+                                children: item.employment ? item.employment : '-',
+                            },
+
+                        ]} />
+                }))
+            } />
+            {/* {teacher.map((item, index) => <Descriptions
                 key={index}
                 style={{ marginBottom: "20px" }}
                 title={<Flex gap={'small'}><Avatar src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${item.id}`} /><p>{item.fio}</p></Flex>}
@@ -99,7 +186,7 @@ export default function Staff() {
                         label: 'Форма трудового соглашения',
                         children: item.employment ? item.employment : '-',
                     },
-                ]} />)}
+                ]} />)} */}
 
         </>
     )

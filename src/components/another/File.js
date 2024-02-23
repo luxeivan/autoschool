@@ -16,7 +16,7 @@ export default function File({ name, url, type, size }) {
     return (
         <List.Item>
             <List.Item.Meta
-                avatar={<Avatar src={ico} />}
+                avatar={<Avatar size={48} src={ico} />}
                 title={<a href={conf.serverUrl + url} target='_blank'>{name}</a>}
                 description={size > 1000 ? `${(size / 1000).toFixed(1)} MB` : `${(size).toFixed()} KB`}
             />

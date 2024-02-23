@@ -13,17 +13,20 @@
     margin-top: 5px;
     margin-bottom: 10px;
     font-weight: 200;
+    
 }
 .iconmenu__text{
     /* display: block; */
+    font-size: 16px;
     line-height: normal;
     font-weight: 200;
     transition: all .3s;
+    text-transform: uppercase;
 }
 .iconmenu__text:hover{
     /* box-shadow: 0px 0px 16px 3px rgba(255, 255, 255, 0.5); */
     /* transform: scale(1.1); */
-    color: red;
+    color: #e11e24;
 }
 @media (max-width: 768px){
     .iconmenu{
@@ -33,9 +36,10 @@
     .iconmenu__icon{
         display: block;
     }
+    .iconmenu__text{
+        font-size: inherit;
+    }
     .iconmenu__text:hover{
-        /* box-shadow: 0px 0px 16px 3px rgba(255, 255, 255, 0.5); */
-        /* transform: scale(1.1); */
         color: inherit;
     }
 }
