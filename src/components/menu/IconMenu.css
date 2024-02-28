@@ -37,7 +37,7 @@
         display: block;
     }
     .iconmenu__text{
-        font-size: inherit;
+        font-size: 14px;
     }
     .iconmenu__text:hover{
         color: inherit;

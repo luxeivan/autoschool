@@ -13,6 +13,7 @@ import comp from '../img/main/comp.png'
 import comp_back from '../img/main/comp_back.jpg'
 import sale from '../img/main/sale.png'
 import sale_back from '../img/main/sale_back.png'
+import styles from './Main.module.css'
 
 const { Title, Text, Paragraph } = Typography
 
@@ -63,21 +64,21 @@ const banners = [
 
 export default function Main() {
   return (
-    <div style={{marginTop:"-20px"}}>
+    <div className={styles.main}>
       <Helmet>
         <meta name="description" content="Автошкола «МалинАвто»" />
         <title>Автошкола МалинАвто</title>
       </Helmet>
       <Flex vertical>
         {banners.map((item, index) =>
-          <Flex key={index} align="center" justify="space-around" gap="large" style={{padding:"40px 0", backgroundColor: item.backgroundColor, backgroundImage:`url(${item.backgroundImg})`, backgroundPosition: "center", backgroundSize: "cover" }}>
-            <Flex vertical style={{ maxWidth: "40%" }}>
+          <Flex wrap='wrap' key={index} align="center" justify="space-around" gap="large" style={{padding:"40px 20px", backgroundColor: item.backgroundColor, backgroundImage:`url(${item.backgroundImg})`, backgroundPosition: "center", backgroundSize: "cover" }}>
+            <Flex vertical className={styles.cardElement}>
 
               <Title level={2}>{item.name}</Title>
               <Paragraph>{item.description}</Paragraph>
             </Flex>
-            <Flex justify='center' style={{ maxWidth: "40%", order: index % 2 !== 0 ? -1 : 1 }} >
-              <Image width={"100%"} src={item.img} preview={false} style={{transform:"translateY(40px)"}}/>
+            <Flex justify='center'className={styles.cardElement} style={{order: index % 2 !== 0 ? -1 : 1 }} >
+              <Image width={"100%"} src={item.img} preview={false} />
             </Flex>
           </Flex>
         )}
