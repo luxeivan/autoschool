@@ -91,6 +91,9 @@
 }
 
 @media (max-width: 768px) {
+    .bottomheader__menu{
+        gap: 30px;
+    }
     .topheader {
         justify-content: space-between;
     }
