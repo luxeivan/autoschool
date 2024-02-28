@@ -26,14 +26,13 @@ import Gibdd from './pages/Advanced/Gibdd';
 import OurInstructors from './pages/Advanced/OurInstructors';
 import AdditionalClasses from './pages/Advanced/AdditionalClasses';
 import Gosuslugi from './pages/Advanced/Gosuslugi';
+import Container from './components/Container';
 const { Content } = Layout;
 
 
 
 const App = () => {
-  const {
-    token: { colorBgContainer, borderRadiusLG },
-  } = theme.useToken();
+
   return (
     <ConfigProvider
       theme={{
@@ -63,7 +62,7 @@ const App = () => {
 
             <Header />
             <Content >
-              <div
+              {/* <div
                 style={{
                   // background: colorBgContainer,
                   minHeight: 280,
@@ -72,43 +71,43 @@ const App = () => {
                   padding: "0 24px",
                   borderRadius: borderRadiusLG,
                 }}
-              >
+              > */}
+              <Routes>
+                <Route path='/' element={<Main />} />
 
-                <Routes>
-                  <Route path='/' element={<Main />} />
-                  <Route path='/services' element={<Services />} />
-                  {/* ----------------------- */}
-                  <Route path='/services/category-b' element={<CategoryB />} />
-                  <Route path='/services/category-b-at' element={<CategoryBAT />} />
-                  <Route path='/services/category-a' element={<CategoryA />} />
-                  <Route path='/services/medical' element={<Medical />} />
-                  <Route path='/services/quadro' element={<Quadro />} />
-                  <Route path='/services/board' element={<Board />} />
-                  <Route path='/services/education' element={<Education />} />
-                  {/* ----------------------- */}
-                  <Route path='/advanced' element={<Advanced />} />
-                  {/* ----------------------- */}
-                  <Route path='/advanced/gibdd' element={<Gibdd />} />
-                  <Route path='/advanced/our-instructors' element={<OurInstructors />} />
-                  <Route path='/advanced/additional-classes' element={<AdditionalClasses />} />
-                  <Route path='/advanced/gosuslugi' element={<Gosuslugi />} />
-                  {/* ----------------------- */}
-                  <Route path='/about' element={<About />} />
-                  <Route path='/about/docs' element={<Docs />} />
-                  <Route path='/about/staff' element={<Staff />} />
-                  <Route path='/about/info' element={<Info />} />
-                  <Route path='/about/education' element={<AboutEducation />} />
-                  {/* ----------------------- */}
+                <Route path='/services' element={<Container><Services /></Container>} />
+                {/* ----------------------- */}
+                <Route path='/services/category-b' element={<Container><CategoryB /></Container>} />
+                <Route path='/services/category-b-at' element={<Container><CategoryBAT /></Container>} />
+                <Route path='/services/category-a' element={<Container><CategoryA /></Container>} />
+                <Route path='/services/medical' element={<Container><Medical /></Container>} />
+                <Route path='/services/quadro' element={<Container><Quadro /></Container>} />
+                <Route path='/services/board' element={<Container><Board /></Container>} />
+                <Route path='/services/education' element={<Container><Education /></Container>} />
+                {/* ----------------------- */}
+                <Route path='/advanced' element={<Container><Advanced /></Container>} />
+                {/* ----------------------- */}
+                <Route path='/advanced/gibdd' element={<Container><Gibdd /></Container>} />
+                <Route path='/advanced/our-instructors' element={<Container><OurInstructors /></Container>} />
+                <Route path='/advanced/additional-classes' element={<Container><AdditionalClasses /></Container>} />
+                <Route path='/advanced/gosuslugi' element={<Container><Gosuslugi /></Container>} />
+                {/* ----------------------- */}
+                <Route path='/about' element={<Container><About /></Container>} />
+                <Route path='/about/docs' element={<Container><Docs /></Container>} />
+                <Route path='/about/staff' element={<Container><Staff /></Container>} />
+                <Route path='/about/info' element={<Container><Info /></Container>} />
+                <Route path='/about/education' element={<Container><AboutEducation /></Container>} />
+                {/* ----------------------- */}
 
-                  <Route path='/contacts' element={<Contacts />} />
-                  <Route path='*' element={<Page404 />} />
-                </Routes>
-              </div>
+                <Route path='/contacts' element={<Container><Contacts /></Container>} />
+                <Route path='*' element={<Container><Page404 /></Container>} />
+              </Routes>
+              {/* </div> */}
             </Content>
 
             <Footer />
           </Flex>
-      <ScrollToTop/>          
+          <ScrollToTop />
         </BrowserRouter>
       </Layout>
     </ConfigProvider>

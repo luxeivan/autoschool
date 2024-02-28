@@ -2,13 +2,10 @@ import { Card } from "antd";
 import React from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import css from "./Services.css";
-import categoryB from "../img/categoryB.jpg";
-import categoryBAT from "../img/categoryBAT.jpg";
-import categoryA from "../img/categoryA.jpg";
-import medcom from "../img/medcom.jpg";
-import qvadro from "../img/qvadro.jpg";
-import board from "../img/board.jpg";
-import education from "../img/education.jpg";
+import ourInstructors from "../img/advanced/ourInstructors.jpg";
+import gibdd from "../img/advanced/gibdd.jpg";
+import dop from "../img/advanced/dop.jpg";
+import gosuslugi from "../img/advanced/gosuslugi.jpg";
 import { Helmet } from "react-helmet";
 
 const cards = [
@@ -17,28 +14,28 @@ const cards = [
     name: "Аккредитация в ГИБДД",
     url: "/advanced/gibdd",
     description: "Аккредитация в ГИБДД",
-    image: categoryB,
+    image: gibdd,
   },
   {
     id: 2,
     name: "Наши инструктора",
     url: "/advanced/our-instructors",
     description: "Наши инструктора",
-    image: categoryBAT,
+    image: ourInstructors,
   },
   {
     id: 3,
     name: "Дополнительные занятия",
     url: "/advanced/additional-classes",
     description: "Дополнительные занятия",
-    image: categoryA,
+    image: dop,
   },
   {
     id: 4,
     name: "Госуслуги и квитанция",
     url: "/advanced/gosuslugi",
     description: "Госуслуги и квитанция на оплату",
-    image: medcom,
+    image: gosuslugi,
   },
 ];
 
