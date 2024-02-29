@@ -92,7 +92,7 @@ export default function AppHeader() {
                     <Button type="primary" onClick={showModal}>Записаться</Button>
                 </div>
                 <a type="primary" onClick={showDrawer} className='topheader__buttoncontact'>
-                    <span className="material-symbols-outlined">
+                    <span className="material-symbols-outlined phone">
                         phone
                     </span>
                 </a>
